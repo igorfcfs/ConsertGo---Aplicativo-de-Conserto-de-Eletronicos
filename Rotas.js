@@ -16,13 +16,16 @@ const Rotas = () => {
     <View style={styles.container}>
       <Bottom.Navigator
         initialRouteName="Home" // Definindo a tela inicial
-        screenOptions={{
+        screenOptions={({ route }) => ({
           headerShown: false, // Ocultar cabeçalho para todas as telas
-          tabBarStyle: styles.tabBar, // Aplicando estilos personalizados
+          tabBarStyle: [
+            styles.tabBar,
+            route.name === 'Mapa' && { backgroundColor: 'rgba(136, 135, 136, 1)' }, // Fundo sólido na tela de Mapa
+          ],
           tabBarShowLabel: false, // Remover textos das abas
           tabBarActiveTintColor: '#FFF', // Cor dos ícones quando ativos
           tabBarInactiveTintColor: '#FFF', // Cor dos ícones quando inativos
-        }}
+        })}
       >
         <Bottom.Screen 
           name="Home" 
@@ -75,16 +78,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(136, 135, 136, 0.1)', // Fundo com transparência de 10%
     position: 'absolute', // Flutuar no layout
     bottom: 10, // Distância do fundo da tela
-    left: 20, // Distância da borda esquerda
-    right: 20, // Distância da borda direita
     borderRadius: 20, // Deixando o fundo arredondado
-    height: 60, // Altura da barra
+    width: '100%', // Largura ajustável
+    height: 40, // Altura da barra
     borderTopWidth: 0, // Remover borda superior
     shadowColor: '#000', // Sombra para criar um efeito de flutuação
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 10, // Sombra no Android
+    justifyContent: 'center', // Centraliza os elementos verticalmente
+    left: '5%', // Centraliza horizontalmente com base no espaço restante
+    right: '5%', // Complemento para o left
   },
 });
 

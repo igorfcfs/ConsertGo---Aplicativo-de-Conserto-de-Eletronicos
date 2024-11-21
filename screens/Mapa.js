@@ -31,24 +31,24 @@ export default function Mapa() {
   const assistenciasTecnicas = [
     {
       id: 1,
-      nome: 'Assistência Técnica 1',
-      latitude: -23.6167,
-      longitude: -46.7667,
-      endereco: 'Rua X, 123',
+      nome: 'QTech',
+      latitude: -23.60495995772271,
+      longitude: -46.76473244022914,
+      endereco: 'Av. José André de Moraes, 259 - Jardim Monte Alegre',
     },
     {
       id: 2,
-      nome: 'Assistência Técnica 2',
-      latitude: -23.6175,
-      longitude: -46.7675,
-      endereco: 'Rua Y, 456',
+      nome: 'MsInfotec Assistência Técnica Notebook e Impressora Epson',
+      latitude: -23.604534185024544,
+      longitude: -46.767931164350095,
+      endereco: 'Rua Maria Mari, 398 - Jardim Monte Alegre',
     },
     {
       id: 3,
-      nome: 'Assistência Técnica 3',
-      latitude: -23.6150,
-      longitude: -46.7690,
-      endereco: 'Rua Z, 789',
+      nome: 'Ubi. Tec Assistência Técnica',
+      latitude: -23.610036991274594, 
+      longitude: -46.77584756566774,
+      endereco: 'R. Rio Grande do Sul, 100 - Cidade Intercap',
     },
     // Adicione mais assistências técnicas aqui
   ];

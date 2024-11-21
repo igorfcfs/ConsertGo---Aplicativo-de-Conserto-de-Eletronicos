@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   categoryButton: {
-    width: '48%',
+    width: '48.5%',
     backgroundColor: '#333',
     padding: 20,
     borderRadius: 10,
