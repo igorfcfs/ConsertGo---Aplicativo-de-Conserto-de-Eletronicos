@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function Login({ navigation }) {
+  // Estados para armazenar o e-mail e a senha
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
   return (
     <View style={styles.principal}>
       {/* Logotipo */}
@@ -20,18 +23,22 @@ export default function Login({ navigation }) {
         style={styles.inputText}
         placeholderTextColor="#aaa"
         keyboardType="email-address"
+        value={email} // Vinculando o estado ao campo
+        onChangeText={(text) => setEmail(text)} // Atualizando o estado ao digitar
       />
       <TextInput
         placeholder="Insira sua senha"
         style={styles.inputText}
         placeholderTextColor="#aaa"
         secureTextEntry
+        value={senha} // Vinculando o estado ao campo
+        onChangeText={(text) => setSenha(text)} // Atualizando o estado ao digitar
       />
 
       {/* Botão de Entrar */}
       <TouchableOpacity
         style={styles.botao}
-        onPress={() => navigation.navigate('Rotas')}>
+        onPress={() => navigation.navigate('Categorias')}>
         <Text style={styles.botaoTexto}>Entrar</Text>
       </TouchableOpacity>
 

@@ -3,6 +3,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, View, Text, Alert } from 'react-native';
 import * as Location from 'expo-location';  // Biblioteca para acessar a localização
 
+
 export default function Mapa() {
   const [userLocation, setUserLocation] = useState(null);  // Localização do usuário
   const [hasLocationPermission, setHasLocationPermission] = useState(false);  // Permissão de localização

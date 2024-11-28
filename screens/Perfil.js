@@ -46,7 +46,7 @@ export default function Perfil({ navigation }) {
     });
 
     if (!result.cancelled) {
-      setImageUri(result.uri); // Atualiza a imagem selecionada
+      setImageUri(result.assets[0].uri); // Atualiza a imagem selecionada
     }
   };
 
@@ -64,7 +64,7 @@ export default function Perfil({ navigation }) {
     });
 
     if (!result.cancelled) {
-      setImageUri(result.uri); // Atualiza a imagem tirada
+      setImageUri(result.assets[0].uri); // Atualiza a imagem tirada
     }
   };
 

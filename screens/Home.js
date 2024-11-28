@@ -7,15 +7,25 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
+import Toast from 'react-native-toast-message';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+
+  const showNotification = () => {
+    Toast.show({
+      type: 'success', // Tipos: 'success', 'error', 'info'
+      text1: 'Notificação',
+      text2: 'Você clicou no botão de notificação!',
+    });
+  };
+
   return (
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <Image source={require('../assets/logo_consertgo2.png')} />
         <Text style={styles.addressText}>Rua Augusto Vasconcelos, 291</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={showNotification}>
           <Text style={styles.notificationIcon}>🔔</Text>
         </TouchableOpacity>
       </View>
@@ -26,16 +36,16 @@ const HomeScreen = () => {
 
       {/* Categorias */}
       <View style={styles.categories}>
-        <TouchableOpacity style={styles.categoryButton}>
-          <Text style={styles.categoryText}>Celulares</Text>
+        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('EscolhaAparelhoMovel')}>
+          <Text style={styles.categoryText}>Móveis</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryButton}>
+        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
           <Text style={styles.categoryText}>Computadores</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryButton}>
+        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
           <Text style={styles.categoryText}>Televisões</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryButton}>
+        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
           <Text style={styles.categoryText}>Eletrodomésticos</Text>
         </TouchableOpacity>
       </View>
