@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import { StyleSheet, View, Text, Alert, TouchableOpacity, Image } from 'react-native';
 import * as Location from 'expo-location';  // Biblioteca para acessar a localização
-
+import { Modalize } from 'react-native-modalize';
+import CardAssistencias from '../components/CardAssistencias';
 
 export default function Mapa() {
   const [userLocation, setUserLocation] = useState(null);  // Localização do usuário
   const [hasLocationPermission, setHasLocationPermission] = useState(false);  // Permissão de localização
   const [selectedAssistencia, setSelectedAssistencia] = useState(null);  // Assistência técnica selecionada
+  const modalizeRef = useRef(null);
 
   // Função para solicitar permissão e obter a localização
   useEffect(() => {
@@ -54,10 +56,15 @@ export default function Mapa() {
     // Adicione mais assistências técnicas aqui
   ];
 
+  function onOpen(){
+    modalizeRef.current?.open();
+  }
+
   // Função para lidar com o clique no marcador
   const handleMarkerPress = (assistencia) => {
     setSelectedAssistencia(assistencia);  // Atualiza a assistência técnica selecionada
-    Alert.alert(assistencia.nome, `Endereço: ${assistencia.endereco}`);
+    // Alert.alert(assistencia.nome, `Endereço: ${assistencia.endereco}`);
+    onOpen();
   };
 
   // Função para renderizar o estilo do marcador
@@ -114,6 +121,26 @@ export default function Mapa() {
           />
         ))}
       </MapView>
+      {/* Modalize */}
+      <Modalize 
+        ref={modalizeRef} 
+        snapPoint={500}
+        modalStyle={styles.modalContainer}
+      >
+        <View style={{ padding: 16 }}>
+          {selectedAssistencia && (
+            <>
+              <CardAssistencias 
+                nome={selectedAssistencia.nome} 
+                endereco={selectedAssistencia.endereco} 
+              />
+              <TouchableOpacity onPress={() => Alert.alert('Acompanhamento', 'Função de acompanhamento em desenvolvimento!')}>
+                <Text style={styles.deviceButton}>Acompanhe seu pedido</Text>
+              </TouchableOpacity>
+            </>
+          )}
+        </View>
+      </Modalize>
     </View>
   );
 }
@@ -125,5 +152,108 @@ const styles = StyleSheet.create({
   map: {
     width: '100%',
     height: '100%',
+  },
+  modalContainer: {
+    flex: 1,
+    height: 180,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  deviceImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginBottom: 10,
+  },
+  textContainer: {
+    alignItems: 'center',
+  },
+  deviceTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white'
+  },
+  deviceSubText: {
+    fontSize: 14,
+    color: 'white',
+    textDecorationLine: 'underline',
+    marginTop: 8,
+  },
+  deviceButton: {
+    width: '100%',
+    backgroundColor: '#8e44ad',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  deviceButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#121212', // Fundo escuro para combinar com o tema
+    padding: 16,
+  },
+  searchBar: {
+    backgroundColor: '#1E1E1E', // Fundo levemente mais claro para destaque
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginBottom: 16,
+    color: '#FFFFFF', // Texto branco
+    fontSize: 14,
+  },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#1E1E1E', // Fundo do card
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 12,
+  },
+  cardImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25, // Circular
+    marginRight: 12,
+    backgroundColor: '#333', // Placeholder para a imagem
+  },
+  cardContent: {
+    flex: 1,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF', // Texto branco
+    marginBottom: 4,
+  },
+  cardSubtitle: {
+    fontSize: 14,
+    color: '#AAAAAA', // Texto cinza para contraste
+  },
+  cardIcon: {
+    marginLeft: 12,
+    color: '#FFFFFF', // Cor do ícone (seta ou coração)
+  },
+  filterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  filterButton: {
+    flex: 1,
+    backgroundColor: '#1E1E1E', // Fundo dos filtros
+    borderRadius: 8,
+    padding: 10,
+    marginHorizontal: 4,
+    alignItems: 'center',
+  },
+  filterText: {
+    fontSize: 14,
+    color: '#FFFFFF', // Texto branco
   },
 });

@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Header from '../components/Header';
 
-const SelecionarMarca = ({ navigation }) => {
+const SelecionarMarca = ({ navigation, route }) => {
+  const categoryTitle = route?.params?.categoryTitle || 'Categoria não especificada'; // Valor padrão
+
   const brands = [
     { id: 'apple', label: 'Apple', image: require('../assets/apple.png') },
     { id: 'samsung', label: 'Samsung', image: require('../assets/samsung.png') },
-    { id: 'xiaomi', label: 'MI', image: require('../assets/xiaomi.png') },
+    { id: 'xiaomi', label: 'Xiaomi', image: require('../assets/xiaomi.png') },
     { id: 'motorola', label: 'Motorola', image: require('../assets/motorola.png') },
     { id: 'realme', label: 'Realme', image: require('../assets/realme.png') },
     { id: 'others', label: 'Outros' },
@@ -22,7 +24,7 @@ const SelecionarMarca = ({ navigation }) => {
           <TouchableOpacity
             key={brand.id}
             style={styles.card}
-            onPress={() => navigation.navigate('Rotas', { brand: brand.label })}
+            onPress={() => navigation.navigate('Rotas', { categoryTitle: categoryTitle, brand: brand.label })}
           >
             <Image source={brand.image} style={styles.cardImage} alt={brand.label} />
             <Text style={styles.cardLabel}>{brand.label}</Text>
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#111',
-    width: '45%',
+    width: '47.5%',
     height: 120,
     borderRadius: 8,
     justifyContent: 'center',
@@ -71,8 +73,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   cardImage: {
-    width: 40,
-    height: 40,
+    width: 60,  // Aumentado o tamanho da imagem
+    height: 60, // Aumentado o tamanho da imagem
     marginBottom: 8,
   },
   cardLabel: {

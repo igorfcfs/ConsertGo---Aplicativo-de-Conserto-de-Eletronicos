@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react
 import Header from '../components/Header';
 
 const categories = [
-  { id: '1', title: 'Móveis', image: require('../assets/moveis.png') },
-  { id: '2', title: 'Computadores', image: require('../assets/computadores.png') },
-  { id: '3', title: 'Televisões', image: require('../assets/televisoes.png') },
-  { id: '4', title: 'Eletrodomésticos', image: require('../assets/eletrodomesticos.png') },
+  { id: '1', title: 'Móvel', image: require('../assets/Moveis.png') },
+  { id: '2', title: 'Computador', image: require('../assets/Computadores.png') },
+  { id: '3', title: 'Televisão', image: require('../assets/Televisoes.png') },
+  { id: '4', title: 'Eletrodoméstico', image: require('../assets/Eletrodomesticos.png') },
 ];
 
 const CategoryCard = ({ title, image, onPress }) => (
@@ -16,14 +16,15 @@ const CategoryCard = ({ title, image, onPress }) => (
   </TouchableOpacity>
 );
 
-export default function Categorias({ navigation }) {
+export default function Categorias({ navigation, route }) {
+  
   const renderCategory = ({ item }) => (
     <CategoryCard 
     title={item.title} 
     image={item.image} 
     onPress={() => item.id === '1' 
-        ? navigation.navigate('EscolhaAparelhoMovel') 
-        : navigation.navigate.goBack('SelecionarMarca')} // se nao tiver o goBack da problema, pois eu preciso voltar uma tela para navegar pra proxima
+        ? navigation.navigate('EscolhaAparelhoMovel')
+        : navigation.navigate('SelecionarMarca', { categoryTitle: item.title })}
     />
   );
 

@@ -4,8 +4,9 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Image,
+  ImageBackground,
   StyleSheet,
+  Image
 } from 'react-native';
 import Toast from 'react-native-toast-message';
 
@@ -37,16 +38,28 @@ const HomeScreen = ({ navigation }) => {
       {/* Categorias */}
       <View style={styles.categories}>
         <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('EscolhaAparelhoMovel')}>
-          <Text style={styles.categoryText}>Móveis</Text>
+          <ImageBackground source={require('../assets/Moveis2.png')} style={styles.image}>
+            <View style={styles.overlay} />
+            <Text style={styles.categoryText}>Móveis</Text>
+          </ImageBackground>
         </TouchableOpacity>
         <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
-          <Text style={styles.categoryText}>Computadores</Text>
+          <ImageBackground source={require('../assets/Computadores2.png')} style={styles.image}>
+            <View style={styles.overlay} />
+            <Text style={styles.categoryText}>Computadores</Text>
+          </ImageBackground>
         </TouchableOpacity>
         <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
-          <Text style={styles.categoryText}>Televisões</Text>
+          <ImageBackground source={require('../assets/Televisoes2.png')} style={styles.image}>
+            <View style={styles.overlay} />
+            <Text style={styles.categoryText}>Televisões</Text>
+          </ImageBackground>
         </TouchableOpacity>
         <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
-          <Text style={styles.categoryText}>Eletrodomésticos</Text>
+          <ImageBackground source={require('../assets/Eletrodomesticos.png')} style={styles.image}>
+            <View style={styles.overlay} />
+            <Text style={styles.categoryText}>Eletrodomésticos</Text>
+          </ImageBackground>
         </TouchableOpacity>
       </View>
 
@@ -63,7 +76,7 @@ const HomeScreen = ({ navigation }) => {
       {/* Assistência do Mês */}
       <Text style={styles.sectionTitle}>Assistência do Mês</Text>
       <View style={styles.highlightCard}>
-        <Text style={styles.highlightTitle}>Assistência 723</Text>
+        <Text style={styles.highlightTitle}>QTech</Text>
         <Text style={styles.highlightRating}>⭐ 4.9</Text>
         <Text style={styles.highlightDescription}>
           "A melhor em conserto de celulares."
@@ -73,11 +86,12 @@ const HomeScreen = ({ navigation }) => {
       {/* Melhores avaliadas */}
       <Text style={styles.sectionTitle}>Melhores avaliadas</Text>
       <ScrollView horizontal style={styles.horizontalList}>
-        {[...Array(5)].map((_, index) => (
-          <View key={index} style={styles.assistanceCard}>
-            <Text style={styles.assistanceText}>Assistência {index + 1}</Text>
-          </View>
-        ))}
+        <View style={styles.assistanceCard}>
+          <Text style={styles.assistanceText}>QTech</Text>
+        </View>
+        <View style={styles.assistanceCard}>
+          <Text style={styles.assistanceText}>MsInfotec</Text>
+        </View>
       </ScrollView>
     </ScrollView>
   );
@@ -121,16 +135,27 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   categoryButton: {
-    width: '48.5%',
-    backgroundColor: '#333',
-    padding: 20,
+    width: '48%',
+    height: 150,
+    marginBottom: 13,
     borderRadius: 10,
+    overflow: 'hidden',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   categoryText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    zIndex: 1,
   },
   sectionTitle: {
     color: '#fff',
@@ -169,19 +194,6 @@ const styles = StyleSheet.create({
   highlightDescription: {
     color: '#fff',
     fontSize: 14,
-  },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 10,
-    backgroundColor: '#222',
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-  },
-  navIcon: {
-    color: '#fff',
-    fontSize: 20,
   },
 });
 

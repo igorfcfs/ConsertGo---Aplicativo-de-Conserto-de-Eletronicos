@@ -1,23 +1,32 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, StyleSheet, Image, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 
 // Importando o caminho da logo
 import logo from '../assets/logo_consertgo2.png';
 
-const Consertos = ({ navigation }) => {
+const Consertos = ({ navigation, route }) => {
+  const { categoryTitle, brand } = route.params || {}; // Recupera o parâmetro ou usa um valor padrão
+  
   const [aparelhos, setAparelhos] = useState([
     { id: '1', nome: 'iPhone', modelo: '12', problema: 'Tela Quebrada' },
   ]);
 
+  const [novoProblema, setNovoProblema] = useState(''); // Estado para o texto do problema
+  const [showInput, setShowInput] = useState(false); // Estado para mostrar ou esconder o campo de texto
+
   // Função para adicionar um novo cartão
   const addAparelho = () => {
+    if (novoProblema.trim() === '') return; // Não permite adicionar sem um problema
+
     const novoAparelho = {
       id: (aparelhos.length + 1).toString(),
-      nome: 'Laptop',
-      modelo: 'Dell XPS',
-      problema: 'Bateria não carrega',
+      nome: 'Dispositivo Genérico',
+      modelo: 'Modelo X',
+      problema: novoProblema,
     };
     setAparelhos([...aparelhos, novoAparelho]);
+    setNovoProblema(''); // Limpa o campo de texto
+    setShowInput(false); // Esconde o campo após adicionar
   };
 
   const renderCard = ({ item }) => (
@@ -28,7 +37,7 @@ const Consertos = ({ navigation }) => {
           style={styles.deviceImage}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.deviceTitle}>{`${item.nome} ${item.modelo} – ${item.problema}`}</Text>
+          <Text style={styles.deviceTitle}>{`${categoryTitle}, ${brand} – ${item.problema}`}</Text>
           <Text style={styles.deviceSubText}>Acompanhe seu pedido</Text>
         </View>
       </View>
@@ -54,9 +63,23 @@ const Consertos = ({ navigation }) => {
         contentContainerStyle={styles.listContainer}
       />
 
+      {/* Campo de texto para o problema */}
+      {showInput && (
+        <TextInput
+          style={styles.input}
+          placeholder="Descreva o problema"
+          placeholderTextColor="#A1A1A1"
+          value={novoProblema}
+          onChangeText={setNovoProblema}
+        />
+      )}
+
       {/* Botão de adicionar outro aparelho */}
-      <TouchableOpacity style={styles.addButton} onPress={addAparelho}>
-        <Text style={styles.addButtonText}>+</Text>
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={() => (showInput ? addAparelho() : setShowInput(true))}
+      >
+        <Text style={styles.addButtonText}>{showInput ? 'Adicionar' : '+'}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -116,6 +139,15 @@ const styles = StyleSheet.create({
   arrow: {
     fontSize: 18,
     color: '#FFF', // Ícone de seta em branco
+  },
+  input: {
+    backgroundColor: '#1C1C1E',
+    color: '#FFF',
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+    borderColor: '#333',
+    borderWidth: 1,
   },
   addButton: {
     backgroundColor: '#1C1C1E', // Fundo do botão

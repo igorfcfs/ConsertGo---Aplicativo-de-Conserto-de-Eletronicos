@@ -11,7 +11,8 @@ import { Ionicons, MaterialIcons, FontAwesome } from 'react-native-vector-icons'
 
 const Bottom = createBottomTabNavigator();
 
-const Rotas = () => {
+const Rotas = ({ route }) => {
+  const { categoryTitle, brand } = route.params || {};
   return (
     <View style={styles.container}>
       <Bottom.Navigator
@@ -53,6 +54,7 @@ const Rotas = () => {
               <Ionicons name="construct" size={size} color={color} />
             ),
           }}
+          initialParams={{ categoryTitle: categoryTitle, brand: brand }}
         />
         <Bottom.Screen 
           name="Perfil" 

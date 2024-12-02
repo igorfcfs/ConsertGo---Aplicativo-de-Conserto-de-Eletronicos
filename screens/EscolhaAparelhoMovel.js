@@ -18,7 +18,7 @@ const CategoryCard = ({ title, onPress }) => (
 
 export default function App({ navigation }) {
   const renderCategory = ({ item }) => (
-    <CategoryCard title={item.title} onPress={() => navigation.navigate('SelecionarMarca')} />
+    <CategoryCard title={item.title} onPress={() => navigation.navigate('SelecionarMarca', { categoryTitle: item.title })} />
   );
 
   return (
