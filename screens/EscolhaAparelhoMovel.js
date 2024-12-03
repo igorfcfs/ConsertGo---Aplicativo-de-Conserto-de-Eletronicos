@@ -12,7 +12,7 @@ const categories = [
 const CategoryCard = ({ title, onPress }) => (
   <TouchableOpacity style={styles.card} onPress={onPress}>
     <Text style={styles.cardText}>{title}</Text>
-    <Text style={{textAlign: 'right', color: '#fff'}}>></Text>
+    <Text style={{color: '#fff', marginTop: 13}}>></Text>
   </TouchableOpacity>
 );
 
@@ -30,6 +30,12 @@ export default function App({ navigation }) {
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
       />
+      {/* Footer Navigation */}
+      <View style={styles.footer}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botao}>
+          <Text style={styles.botaoTexto}>Anterior</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -75,5 +81,18 @@ const styles = StyleSheet.create({
   nextButtonText: {
     fontSize: 16,
     color: '#fff',
+  },
+  botao: {
+    width: '100%',
+    backgroundColor: '#8e44ad',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  botaoTexto: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

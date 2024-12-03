@@ -16,7 +16,7 @@ const CategoryCard = ({ title, image, onPress }) => (
   </TouchableOpacity>
 );
 
-export default function Categorias({ navigation, route }) {
+export default function Categorias({ navigation }) {
   
   const renderCategory = ({ item }) => (
     <CategoryCard 

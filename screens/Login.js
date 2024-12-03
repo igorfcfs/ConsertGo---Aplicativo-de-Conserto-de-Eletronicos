@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
-export default function Login({ navigation }) {
-  // Estados para armazenar o e-mail e a senha
+export default function Login({ navigation, route }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const { nome = 'Categoria não especificada', sobrenome = 'Categoria não especificada', email: emailCadastrado, senha: senhaCadastrada } = route.params || {};
+
+  const handleLogin = () => {
+    if (email == emailCadastrado && senha == senhaCadastrada) {
+      // Navega para a tela de Categorias
+      navigation.navigate('Categorias');
+    } else {
+      // Exibe uma mensagem de erro
+      Alert.alert('Erro', 'E-mail ou senha incorretos. Tente novamente.');
+      console.log(email, senha, emailCadastrado, senhaCadastrada)
+    }
+  };
+
   return (
     <View style={styles.principal}>
       {/* Logotipo */}
@@ -23,36 +35,36 @@ export default function Login({ navigation }) {
         style={styles.inputText}
         placeholderTextColor="#aaa"
         keyboardType="email-address"
-        value={email} // Vinculando o estado ao campo
-        onChangeText={(text) => setEmail(text)} // Atualizando o estado ao digitar
+        value={email}
+        onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         placeholder="Insira sua senha"
         style={styles.inputText}
         placeholderTextColor="#aaa"
         secureTextEntry
-        value={senha} // Vinculando o estado ao campo
-        onChangeText={(text) => setSenha(text)} // Atualizando o estado ao digitar
+        value={senha}
+        onChangeText={(text) => setSenha(text)}
       />
 
       {/* Botão de Entrar */}
-      <TouchableOpacity
-        style={styles.botao}
-        onPress={() => navigation.navigate('Categorias')}>
+      <TouchableOpacity style={styles.botao} onPress={handleLogin}>
         <Text style={styles.botaoTexto}>Entrar</Text>
       </TouchableOpacity>
 
       {/* Botão de Cadastro */}
       <TouchableOpacity
         style={styles.botaoSecundario}
-        onPress={() => navigation.navigate('Cadastro')}>
+        onPress={() => navigation.navigate('Cadastro')}
+      >
         <Text style={styles.botaoSecundarioTexto}>Cadastro</Text>
       </TouchableOpacity>
 
       {/* Botão de Esqueci a senha */}
       <TouchableOpacity
         style={styles.botaoLink}
-        onPress={() => navigation.navigate('RecuperarSenha')}>
+        onPress={() => navigation.navigate('RecuperarSenha')}
+      >
         <Text style={styles.linkTexto}>Esqueci a senha</Text>
       </TouchableOpacity>
     </View>
@@ -68,9 +80,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
+    alignSelf: "center",
+    borderRadius: 100,
+    padding: 10,
+    marginBottom: 20,  // Aumentei a margem inferior para separar mais do texto
+    width: 300,
+    height: 200,
   },
   title: {
     fontSize: 32,

@@ -13,7 +13,7 @@ export default function Start({ navigation }) {
       />
       {/*resizeMode="cover" -> imagem de fundo*/}
 
-      <TouchableOpacity style={style.button} title="Proximo" onPress={() => navigation.navigate('Login')}><Text style={style.buttonText}>Próximo ></Text></TouchableOpacity>
+      <TouchableOpacity style={style.botao2} title="Proximo" onPress={() => navigation.navigate('Login')}><Text style={style.botaoTexto2}>Próximo ></Text></TouchableOpacity>
     </View>
   );
 }

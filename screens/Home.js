@@ -11,7 +11,6 @@ import {
 import Toast from 'react-native-toast-message';
 
 const HomeScreen = ({ navigation }) => {
-
   const showNotification = () => {
     Toast.show({
       type: 'success', // Tipos: 'success', 'error', 'info'
@@ -43,19 +42,19 @@ const HomeScreen = ({ navigation }) => {
             <Text style={styles.categoryText}>Móveis</Text>
           </ImageBackground>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
+        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca', { categoryTitle: 'Computador' })}>
           <ImageBackground source={require('../assets/Computadores2.png')} style={styles.image}>
             <View style={styles.overlay} />
             <Text style={styles.categoryText}>Computadores</Text>
           </ImageBackground>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
+        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca', { categoryTitle: 'Televisão' })}>
           <ImageBackground source={require('../assets/Televisoes2.png')} style={styles.image}>
             <View style={styles.overlay} />
             <Text style={styles.categoryText}>Televisões</Text>
           </ImageBackground>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca')}>
+        <TouchableOpacity style={styles.categoryButton} onPress={() => navigation.navigate('SelecionarMarca', { categoryTitle: 'Eletrodoméstico' })}>
           <ImageBackground source={require('../assets/Eletrodomesticos.png')} style={styles.image}>
             <View style={styles.overlay} />
             <Text style={styles.categoryText}>Eletrodomésticos</Text>
@@ -66,33 +65,25 @@ const HomeScreen = ({ navigation }) => {
       {/* Últimas assistências */}
       <Text style={styles.sectionTitle}>Últimas assistências</Text>
       <ScrollView horizontal style={styles.horizontalList}>
-        {[...Array(5)].map((_, index) => (
-          <View key={index} style={styles.assistanceCard}>
-            <Text style={styles.assistanceText}>Assistência {index + 1}</Text>
-          </View>
-        ))}
-      </ScrollView>
-
-      {/* Assistência do Mês */}
-      <Text style={styles.sectionTitle}>Assistência do Mês</Text>
-      <View style={styles.highlightCard}>
-        <Text style={styles.highlightTitle}>QTech</Text>
-        <Text style={styles.highlightRating}>⭐ 4.9</Text>
-        <Text style={styles.highlightDescription}>
-          "A melhor em conserto de celulares."
-        </Text>
-      </View>
-
-      {/* Melhores avaliadas */}
-      <Text style={styles.sectionTitle}>Melhores avaliadas</Text>
-      <ScrollView horizontal style={styles.horizontalList}>
-        <View style={styles.assistanceCard}>
+      <View style={styles.assistanceCard}>
           <Text style={styles.assistanceText}>QTech</Text>
+        </View>
+        <View style={styles.assistanceCard}>
+          <Text style={styles.assistanceText}>Ubi. Tech</Text>
         </View>
         <View style={styles.assistanceCard}>
           <Text style={styles.assistanceText}>MsInfotec</Text>
         </View>
       </ScrollView>
+
+      {/* Assistência do Mês */}
+      <Text style={styles.sectionTitle}>Assistência do Mês</Text>
+      <View style={styles.highlightCard}>
+        <Text style={styles.highlightTitle}>QTech - 4.9⭐⭐⭐⭐⭐</Text>
+        <Text style={styles.highlightDescription}>
+          "A melhor em conserto de celulares."
+        </Text>
+      </View>
     </ScrollView>
   );
 };

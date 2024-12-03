@@ -23,15 +23,17 @@ export default function Cadastro({ navigation }) {
 
   const handleLogin = () => {
     // Adicione a navegação para a tela de login aqui
-    navigation.navigate('Login');
+    navigation.navigate('Login', { nome: nome, sobrenome: sobrenome, email: email, senha: senha });
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Logo */}
-      <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>Go</Text>
-      </View>
+      {/* Logotipo */}
+      <Image
+        source={require('../assets/logo_consertgo.png')}
+        style={styles.logo}
+        resizeMode="contain"
+      />
 
       {/* Título */}
       <Text style={styles.title}>Cadastro</Text>
@@ -84,7 +86,7 @@ export default function Cadastro({ navigation }) {
       </View>
 
       {/* Botões */}
-      <TouchableOpacity style={styles.cadastroButton} onPress={handleCadastro}>
+      <TouchableOpacity style={styles.cadastroButton} onPress={handleLogin}>
         <Text style={styles.cadastroButtonText}>Cadastrar-se</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
@@ -101,14 +103,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
   },
-  logoContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  logoText: {
-    color: '#fff',
-    fontSize: 24,
-    fontWeight: 'bold',
+  logo: {
+    alignSelf: "center",
+    borderRadius: 100,
+    padding: 10,
+    marginBottom: 20,  // Aumentei a margem inferior para separar mais do texto
+    width: 300,
+    height: 200,
   },
   title: {
     color: '#fff',

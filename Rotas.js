@@ -12,7 +12,7 @@ import { Ionicons, MaterialIcons, FontAwesome } from 'react-native-vector-icons'
 const Bottom = createBottomTabNavigator();
 
 const Rotas = ({ route }) => {
-  const { categoryTitle, brand } = route.params || {};
+  const { categoryTitle: categoryTitle, brand: brand } = route.params || {};
   return (
     <View style={styles.container}>
       <Bottom.Navigator
@@ -27,6 +27,7 @@ const Rotas = ({ route }) => {
           tabBarActiveTintColor: '#FFF', // Cor dos ícones quando ativos
           tabBarInactiveTintColor: '#FFF', // Cor dos ícones quando inativos
         })}
+        initialParams={{ categoryTitle: categoryTitle, brand: brand }}
       >
         <Bottom.Screen 
           name="Home" 

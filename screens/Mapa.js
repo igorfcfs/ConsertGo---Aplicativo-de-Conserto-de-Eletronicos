@@ -38,6 +38,7 @@ export default function Mapa() {
       latitude: -23.60495995772271,
       longitude: -46.76473244022914,
       endereco: 'Av. José André de Moraes, 259 - Jardim Monte Alegre',
+      imageSource: '../assets/Ubi. Tec Assistencia.png'
     },
     {
       id: 2,
@@ -45,6 +46,7 @@ export default function Mapa() {
       latitude: -23.604534185024544,
       longitude: -46.767931164350095,
       endereco: 'Rua Maria Mari, 398 - Jardim Monte Alegre',
+      imageSource: '../assets/Ubi. Tec Assistencia.png'
     },
     {
       id: 3,
@@ -52,6 +54,7 @@ export default function Mapa() {
       latitude: -23.610036991274594, 
       longitude: -46.77584756566774,
       endereco: 'R. Rio Grande do Sul, 100 - Cidade Intercap',
+      imageSource: '../assets/Ubi. Tec Assistencia.png'
     },
     // Adicione mais assistências técnicas aqui
   ];
@@ -72,7 +75,7 @@ export default function Mapa() {
     // Se a assistência for a selecionada, retornamos um estilo diferente
     return assistencia.id === selectedAssistencia?.id
       ? { pinColor: 'red' }  // Marcador vermelho para a assistência selecionada
-      : { pinColor: 'green' };  // Marcador verde para as demais assistências
+      : { pinColor: 'black' };  // Marcador verde para as demais assistências
   };
 
   if (!hasLocationPermission) {
@@ -103,7 +106,7 @@ export default function Mapa() {
           }}
           title="Sua localização"
           description="Você está aqui"
-          pinColor="blue" // Cor do marcador de localização do usuário
+          pinColor="#8e44ad" // Cor do marcador de localização do usuário
         />
 
         {/* Marcadores para as assistências técnicas */}
@@ -130,12 +133,13 @@ export default function Mapa() {
         <View style={{ padding: 16 }}>
           {selectedAssistencia && (
             <>
-              <CardAssistencias 
+              <CardAssistencias
+                imageSource={selectedAssistencia.imageSource}
                 nome={selectedAssistencia.nome} 
                 endereco={selectedAssistencia.endereco} 
               />
-              <TouchableOpacity onPress={() => Alert.alert('Acompanhamento', 'Função de acompanhamento em desenvolvimento!')}>
-                <Text style={styles.deviceButton}>Acompanhe seu pedido</Text>
+              <TouchableOpacity style={styles.botao} onPress={() => Alert.alert('Acompanhamento', 'Função de acompanhamento em desenvolvimento!')}>
+                <Text style={styles.botaoTexto}>Acompanhe seu pedido</Text>
               </TouchableOpacity>
             </>
           )}
@@ -255,5 +259,18 @@ const styles = StyleSheet.create({
   filterText: {
     fontSize: 14,
     color: '#FFFFFF', // Texto branco
+  },
+  botao: {
+    width: '100%',
+    backgroundColor: '#8e44ad',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  botaoTexto: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

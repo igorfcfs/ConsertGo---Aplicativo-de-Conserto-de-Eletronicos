@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const style = StyleSheet.create({
   principal: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "#121212",
     justifyContent: "center",  // Centraliza o conteúdo verticalmente
     alignItems: "center",  // Centraliza o conteúdo horizontalmente
   },
@@ -58,7 +58,20 @@ const style = StyleSheet.create({
   botaoTexto: {
     color: 'white',
     fontSize: 16,
-  }
+  },
+  botao2: {
+    width: '80%',
+    backgroundColor: '#8e44ad',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  botaoTexto2: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
 });
 
 export default style;

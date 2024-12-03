@@ -5,7 +5,8 @@ import { View, StyleSheet, Image, Text, TouchableOpacity, FlatList, TextInput } 
 import logo from '../assets/logo_consertgo2.png';
 
 const Consertos = ({ navigation, route }) => {
-  const { categoryTitle, brand } = route.params || {}; // Recupera o parâmetro ou usa um valor padrão
+  const categoryTitle = route.params.categoryTitle || {};
+  const brand = route.params.brand || {}; // Recupera o parâmetro ou usa um valor padrão
   
   const [aparelhos, setAparelhos] = useState([
     { id: '1', nome: 'iPhone', modelo: '12', problema: 'Tela Quebrada' },
@@ -126,11 +127,13 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     justifyContent: 'center',
+    flex: 1, // Permite que o texto ocupe o espaço disponível
   },
   deviceTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#FFF',
+    flexWrap: 'wrap', // Permite que o texto quebre a linha
   },
   deviceSubText: {
     fontSize: 14,

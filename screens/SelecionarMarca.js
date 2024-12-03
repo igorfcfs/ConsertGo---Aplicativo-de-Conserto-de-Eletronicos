@@ -34,8 +34,8 @@ const SelecionarMarca = ({ navigation, route }) => {
 
       {/* Footer Navigation */}
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <Text style={styles.backButtonText}>Anterior</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.botao}>
+          <Text style={styles.botaoTexto}>Anterior</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -97,6 +97,19 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     marginLeft: 8,
+  },
+  botao: {
+    width: '100%',
+    backgroundColor: '#8e44ad',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  botaoTexto: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
