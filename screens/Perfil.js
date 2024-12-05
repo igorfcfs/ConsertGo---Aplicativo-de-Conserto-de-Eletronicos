@@ -12,10 +12,11 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-export default function Perfil({ navigation }) {
+export default function Perfil({ navigation, route }) {
+  const nome = route?.params?.nome || 'Sem nome'; // Valor padrão
   const [imageUri, setImageUri] = useState(null); // Armazena a imagem do usuário
   const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
-  const [email, setEmail] = useState('joao@gmail.com'); // Exemplo de email
+  const [email, setEmail] = useState(route?.params?.email); // Exemplo de email
   const [endereco, setEndereco] = useState('Rua Augusto Vasconcelos, 291'); // Exemplo de endereço
   const [cartoes, setCartoes] = useState([
     { id: '1', tipo: 'Débito', numero: '**** **** **** 9150' },
@@ -111,7 +112,7 @@ export default function Perfil({ navigation }) {
       </View>
 
       {/* Nome do usuário */}
-      <Text style={styles.userName}>João</Text>
+      <Text style={styles.userName}>{`${nome}`}</Text>
 
       {/* Informações do usuário */}
       <View style={styles.infoContainer}>

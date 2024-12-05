@@ -160,7 +160,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   loginButton: {
+    width: '100%',
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#8e44ad',
+    padding: 15,
+    borderRadius: 5,
     alignItems: 'center',
+    marginBottom: 15,
   },
   loginButtonText: {
     color: '#8e44ad',

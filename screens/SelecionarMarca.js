@@ -4,6 +4,8 @@ import Header from '../components/Header';
 
 const SelecionarMarca = ({ navigation, route }) => {
   const categoryTitle = route?.params?.categoryTitle || 'Categoria não especificada'; // Valor padrão
+  const nome = route?.params?.nome || 'Sem nome'; // Valor padrão
+  const email = route?.params?.email || 'Sem email'; // Valor padrão
 
   const brands = [
     { id: 'apple', label: 'Apple', image: require('../assets/apple.png') },
@@ -13,6 +15,8 @@ const SelecionarMarca = ({ navigation, route }) => {
     { id: 'realme', label: 'Realme', image: require('../assets/realme.png') },
     { id: 'others', label: 'Outros' },
   ];
+
+  console.log(nome, email);
 
   return (
     <View style={styles.container}>
@@ -24,7 +28,7 @@ const SelecionarMarca = ({ navigation, route }) => {
           <TouchableOpacity
             key={brand.id}
             style={styles.card}
-            onPress={() => navigation.navigate('Rotas', { categoryTitle: categoryTitle, brand: brand.label })}
+            onPress={() => navigation.navigate('DefinirProblema', { nome: nome, email: email, categoryTitle: categoryTitle, brand: brand.label})}
           >
             <Image source={brand.image} style={styles.cardImage} alt={brand.label} />
             <Text style={styles.cardLabel}>{brand.label}</Text>

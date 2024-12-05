@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, route }) => {
+  const nome = route?.params?.nome || 'Sem nome'; // Valor padrão
   const showNotification = () => {
     Toast.show({
       type: 'success', // Tipos: 'success', 'error', 'info'
@@ -31,7 +32,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
 
       {/* Saudações */}
-      <Text style={styles.greeting}>Olá, João</Text>
+      <Text style={styles.greeting}>{`Olá, ${nome}`}</Text>
       <Text style={styles.subGreeting}>O que quer consertar hoje?</Text>
 
       {/* Categorias */}

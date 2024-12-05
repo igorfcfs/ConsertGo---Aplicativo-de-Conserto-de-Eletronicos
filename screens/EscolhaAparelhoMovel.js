@@ -16,10 +16,13 @@ const CategoryCard = ({ title, onPress }) => (
   </TouchableOpacity>
 );
 
-export default function App({ navigation }) {
+export default function App({ navigation, route }) {
+  const nome = route?.params?.nome || 'Sem nome'; // Valor padrão
+  const email = route?.params?.email || 'Sem email'; // Valor padrão
   const renderCategory = ({ item }) => (
-    <CategoryCard title={item.title} onPress={() => navigation.navigate('SelecionarMarca', { categoryTitle: item.title })} />
+    <CategoryCard title={item.title} onPress={() => navigation.navigate('SelecionarMarca', { categoryTitle: item.title, nome: nome, email: email })} />
   );
+  console.log(nome, email);
 
   return (
     <View style={styles.container}>

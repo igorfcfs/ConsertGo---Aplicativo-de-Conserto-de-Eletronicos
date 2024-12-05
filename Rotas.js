@@ -12,7 +12,7 @@ import { Ionicons, MaterialIcons, FontAwesome } from 'react-native-vector-icons'
 const Bottom = createBottomTabNavigator();
 
 const Rotas = ({ route }) => {
-  const { categoryTitle: categoryTitle, brand: brand } = route.params || {};
+  const { nome: nome, email: email, categoryTitle: categoryTitle, brand: brand, problem: problem } = route.params || {};
   return (
     <View style={styles.container}>
       <Bottom.Navigator
@@ -27,7 +27,6 @@ const Rotas = ({ route }) => {
           tabBarActiveTintColor: '#FFF', // Cor dos ícones quando ativos
           tabBarInactiveTintColor: '#FFF', // Cor dos ícones quando inativos
         })}
-        initialParams={{ categoryTitle: categoryTitle, brand: brand }}
       >
         <Bottom.Screen 
           name="Home" 
@@ -37,6 +36,7 @@ const Rotas = ({ route }) => {
               <Ionicons name="home" size={size} color={color} />
             ),
           }}
+          initialParams={{ nome: nome }}
         />
         <Bottom.Screen 
           name="Mapa" 
@@ -55,7 +55,7 @@ const Rotas = ({ route }) => {
               <Ionicons name="construct" size={size} color={color} />
             ),
           }}
-          initialParams={{ categoryTitle: categoryTitle, brand: brand }}
+          initialParams={{ categoryTitle: categoryTitle, brand: brand, problem: problem }}
         />
         <Bottom.Screen 
           name="Perfil" 
@@ -65,6 +65,7 @@ const Rotas = ({ route }) => {
               <FontAwesome name="user" size={size} color={color} />
             ),
           }}
+          initialParams={{ nome: nome, email: email }}
         />
       </Bottom.Navigator>
     </View>

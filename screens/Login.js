@@ -4,12 +4,13 @@ import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, Alert } fro
 export default function Login({ navigation, route }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const { nome = 'Categoria não especificada', sobrenome = 'Categoria não especificada', email: emailCadastrado, senha: senhaCadastrada } = route.params || {};
+  const { nome = 'Sem nome', sobrenome = 'Categoria não especificada', email: emailCadastrado, senha: senhaCadastrada } = route.params || {};
 
   const handleLogin = () => {
     if (email == emailCadastrado && senha == senhaCadastrada) {
       // Navega para a tela de Categorias
-      navigation.navigate('Categorias');
+      navigation.navigate('Categorias', { nome: nome, email: emailCadastrado});
+      console.log('Nome:', nome, 'Email cadastrado:', emailCadastrado)
     } else {
       // Exibe uma mensagem de erro
       Alert.alert('Erro', 'E-mail ou senha incorretos. Tente novamente.');

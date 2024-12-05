@@ -16,17 +16,19 @@ const CategoryCard = ({ title, image, onPress }) => (
   </TouchableOpacity>
 );
 
-export default function Categorias({ navigation }) {
-  
+export default function Categorias({ navigation, route }) {
+  const nome = route?.params?.nome || 'Sem nome'; // Valor padrão
+  const email = route?.params?.email || 'Sem email'; // Valor padrão
   const renderCategory = ({ item }) => (
     <CategoryCard 
     title={item.title} 
     image={item.image} 
     onPress={() => item.id === '1' 
-        ? navigation.navigate('EscolhaAparelhoMovel')
-        : navigation.navigate('SelecionarMarca', { categoryTitle: item.title })}
+        ? navigation.navigate('EscolhaAparelhoMovel', { nome: nome, email: email })
+        : navigation.navigate('SelecionarMarca', { categoryTitle: item.title, nome: nome, email: email })}
     />
   );
+  console.log(nome, email);
 
   return (
     <View style={styles.container}>

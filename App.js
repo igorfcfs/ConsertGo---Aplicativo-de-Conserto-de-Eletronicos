@@ -4,6 +4,7 @@ import Start from './screens/Start';
 import Categorias from './screens/Categorias';
 import EscolhaAparelhoMovel from './screens/EscolhaAparelhoMovel';
 import SelecionarMarca from './screens/SelecionarMarca';
+import DefinirProblema from './screens/DefinirProblema';
 import Login from './screens/Login';
 import Cadastro from './screens/Cadastro';
 import Rotas from './Rotas';
@@ -24,6 +25,7 @@ export default function App() {
           <Stack.Screen name="Categorias" component={Categorias} />
           <Stack.Screen name="EscolhaAparelhoMovel" component={EscolhaAparelhoMovel} />
           <Stack.Screen name="SelecionarMarca" component={SelecionarMarca} />
+          <Stack.Screen name="DefinirProblema" component={DefinirProblema} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Cadastro" component={Cadastro} />
           <Stack.Screen name="Rotas" component={Rotas} />
